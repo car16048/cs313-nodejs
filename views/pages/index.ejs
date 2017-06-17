@@ -4,26 +4,27 @@
 		<title>Rate Calculator</title>
 	</head>
 	<body>
-		<form action="/rates" action="GET">
+		<form action="/rates">
 			<table>
 				<tr>
 					<th>Type of Mail</th>
 					<td>
 						<select name="mailType">
 							<option value="1">Letters (Stamped)</option>
-							<option value="1">Letters (Metered)</option>
-							<option value="1">Large Envelopes (Flats)</option>
-							<option value="1">Parcels</option>
+							<option value="2">Letters (Metered)</option>
+							<option value="3">Large Envelopes (Flats)</option>
+							<option value="4">Parcels</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<th>Weight</th>
+					<th>Weight (oz)</th>
 					<td>
-						<input name="weight" type="number" />
+						<input name="weight" type="number" min="0.01" max="13" required step="0.01" />
 					</td>
 				</tr>
 			</table>
+			<input type="submit" value="Check Rates" />
 		</form>
 	</body>
 </html>

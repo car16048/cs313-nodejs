@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <% include ../partials/header.ejs %>
-</head>
-
-<body>
-
-<% include ../partials/nav.ejs %>
-
-<div class="container">
-<h2>Database Results</h2>
-
-<ul>
-    <% results.forEach(function(r) { %>
-        <li><%= r.id %> - <%= r.name %></li>
-    <% }); %>
-</ul>
-
-</div>
-
-</body>
+	<head>
+		<title>Calculated Rates</title>
+	</head>
+	<body>
+		<form action="/rates">
+			<table>
+				<tr>
+					<th>Type of Mail</th>
+					<td>
+						<select name="mailType">
+							<option value="1"<% if (mailType === 1) {%> selected<%}%>>Letters (Stamped)</option>
+							<option value="2"<% if (mailType === 2) {%> selected<%}%>>Letters (Metered)</option>
+							<option value="3"<% if (mailType === 3) {%> selected<%}%>>Large Envelopes (Flats)</option>
+							<option value="4"<% if (mailType === 4) {%> selected<%}%>>Parcels</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>Weight (oz)</th>
+					<td>
+						<input name="weight" type="number" value="<%= weight %>" min="0.01" max="13" required step="0.01" />
+					</td>
+				</tr>
+				<tr>
+					<th>Retail Price</th>
+					<td>$<%=rate.dollars%>.<%=rate.cents%></td>
+				</tr>
+			</table>
+			<input type="submit" value="Recalculate" />
+		</form>
+	</body>
 </html>
